@@ -1,0 +1,20 @@
+#ifndef GAME_H_
+#define GAME_H_
+
+#include <system.h>
+#include "character.h"
+#include "ball_attack.h"
+
+struct SPRITE_INFO {
+	alt_u32 VRAM [8];
+};
+
+static volatile struct SPRITE_INFO* vga_ctrl = SPRITERAM_AVL_INTERFACE_0_BASE;
+
+CHARACTER* my_char = malloc(sizeof(CHARACTER));
+BALL_ATTACK* ball_attack = malloc(sizeof(BALL_ATTACK));
+
+void game_init();
+void game_run(int keycode); 
+
+#endif /* GAME_H_ */

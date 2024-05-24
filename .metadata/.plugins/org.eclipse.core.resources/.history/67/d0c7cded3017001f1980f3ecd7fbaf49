@@ -1,0 +1,47 @@
+#include "enemy.h"
+
+alt_u32 enemy_init(ENEMY* this)
+{
+    this->x = ENEMY_POS_INIT_X;
+    this->y = ENEMY_POS_INIT_Y;
+    this->state = 0;
+    this->x_speed = 0;
+    return (this->x << 22) | (this->y << 12) | (this->state);
+}
+
+alt_u32 enemy_run(ENEMY* this, int char_x)
+{
+    this->x_speed = enemy_update_x_speed(this, char_x);
+    this->x = enemy_update_x(this);
+    this->state = enemy_update_state(this);
+    return (this->x << 22) | (this->y << 12) | (this->state);
+}
+
+int enemy_update_x(ENEMY* this)
+{
+    return (this->x + this->x_speed);
+}
+
+int enemy_update_x_speed(ENEMY* this, int char_x)
+{
+    if (this->x >= char_x)
+    {
+        return -ENEMY_HORIZONTAL_MOVE;
+    }
+    else
+    {
+        return ENEMY_HORIZONTAL_MOVE;
+    }
+}
+
+int enemy_update_state(ENEMY* this)
+{
+    if (this->x_speed > 0)
+    {
+        return (this->state == enemy_r1) ? enemy_r2 : enemy_r1;
+    }
+    else
+    {
+        return (this->state == enemy_l1) ? enemy_l2 : enemy_l1;
+    }
+}

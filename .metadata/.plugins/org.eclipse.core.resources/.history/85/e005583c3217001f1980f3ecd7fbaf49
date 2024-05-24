@@ -1,0 +1,43 @@
+#ifndef ENEMY_H_
+#define ENEMY_H_
+
+#define KEY_D 7
+#define KEY_A 4
+#define KEY_K 14
+#define KEY_J 13
+
+#define ENEMY_POS_INIT_X 400
+#define ENEMY_POS_INIT_Y 256
+#define ENEMY_HORIZONTAL_MOVE 1
+
+#include <alt_types.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+	int x;
+	int y;
+	int state;
+	int x_speed;
+} ENEMY;
+
+enum EnemyStatusIndex{
+	enemy_r1 = 30,
+	enemy_r2,
+	enemy_l1,
+	enemy_l2,
+	enemy_attack_r,
+	enemy_attack_l,
+	enemy_hurt_r,
+	enemy_hurt_l,
+	enemy_dead_r,
+	enemy_dead_l, // 39
+};
+
+alt_u32 enemy_init(ENEMY* this);                  // initialize the enemy
+alt_u32 enemy_run(ENEMY* this, int char_x);             // run the enemy based on the key pressed
+int enemy_update_x(ENEMY* this);   // calculate the new x coordinate of the enemy based on the speed now
+int enemy_update_x_speed(ENEMY* this, int char_x);
+int enemy_update_state(ENEMY* this);
+
+#endif /* ENEMY_H_ */

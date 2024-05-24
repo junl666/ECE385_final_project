@@ -1,0 +1,189 @@
+#include"character.h"
+
+alt_u32 char_init(CHARACTER* this)
+{
+    this->x = CHAR_POS_INIT_X;
+    this->y = CHAR_POS_INIT_Y;
+    this->state = char_still_r;
+    this->x_speed = 0;
+    this->y_speed = 0;
+    this->in_air = 0;
+    return (this->x << 22) | (this->y << 12) | (this->state);
+}
+
+alt_u32 char_run(CHARACTER* this,  int keycode)
+{
+	this->x_speed = char_get_x_speed(keycode);
+	this->y_speed = char_get_y_speed(this, keycode);
+	this->x = char_update_x(this);
+	this->y = char_update_y(this);
+	this->in_air = (this->y == CHAR_POS_INIT_Y) ? 0 : 1;
+	 printf("y: %d, y_speed: %d\n", this->y, this->y_speed);
+	this->state = char_update_state(this, keycode);
+	return (this->x << 22) | (this->y << 12) | (this->state);
+}
+
+int char_update_x(CHARACTER* this)
+{
+	return (this->x + this->x_speed);
+}
+
+int char_update_y(CHARACTER* this)
+{
+	return ((this->y > CHAR_POS_INIT_Y) ? CHAR_POS_INIT_Y : (this->y + this->y_speed));
+}
+
+int char_update_y_speed(CHARACTER* this)
+{
+	return (this->y_speed + GRAVITY);
+}
+
+int char_is_r(CHARACTER* this)
+{
+	return ((this->state == char_still_r) || (this->state == char_r1) || (this->state == char_r2) || 
+            (this->state == char_r3) || (this->state == char_jump_r1) || (this->state == char_jump_r2) ||
+            (this->state == char_attack_r) || (this->state == char_hurt_r) || (this->state == char_dead_r));
+}
+
+int char_is_l(CHARACTER* this)
+{
+	return ((this->state == char_still_l) || (this->state == char_l1) || (this->state == char_l2) || 
+            (this->state == char_l3) || (this->state == char_jump_l1) || (this->state == char_jump_l2) ||
+            (this->state == char_attack_l) || (this->state == char_hurt_l) || (this->state == char_dead_l));
+}
+
+int char_get_x_speed(int keycode)
+{
+	int x_speed_new;
+	if (((keycode&0xFF) == KEY_D) || (((keycode>>8) & 0xFF) == KEY_D))
+	{
+		x_speed_new = CHAR_HORIZONTAL_MOVE;
+	}
+	else if  (((keycode&0xFF) == KEY_A) || (((keycode>>8) & 0xFF) == KEY_A))
+	{
+		x_speed_new = -CHAR_HORIZONTAL_MOVE;
+	}	
+	else
+	{
+		x_speed_new = 0;
+	}
+	return x_speed_new;
+}
+
+int char_get_y_speed(CHARACTER* this, int keycode)
+{
+	int y_speed_new;
+	if ( (((keycode&0xFF) == KEY_K) || (((keycode>>8) & 0xFF) == KEY_K)) && (!this->in_air))
+	{
+		y_speed_new = CHAR_JUMP_SPEED_INIT;
+	}
+	else if (this->in_air)
+	{
+		y_speed_new = char_update_y_speed(this);
+	}
+	else
+	{
+		y_speed_new = 0;
+	}
+	return y_speed_new;
+}
+
+int char_update_state(CHARACTER* this, int keycode)
+{
+	int new_state;
+
+    if (((keycode&0xFF) == KEY_J) || (((keycode>>8) & 0xFF) == KEY_J)) // attack
+    {
+        if (char_is_r(this))
+        {
+            new_state = char_attack_r;
+        }
+        else
+        {
+            new_state = char_attack_l;
+        }
+        return new_state;
+    }
+
+	if (this->y == CHAR_POS_INIT_Y)  // moving left or moving right or staning left or standing right
+	{
+		if (this->x_speed > 0)
+		{
+			if (this->state == char_still_r)		new_state = char_r1;
+			else if (this->state == char_r1)		new_state = char_r2;
+			else if (this->state == char_r2)		new_state = char_r3;
+			else if (this->state == char_r3)		new_state = char_r1;
+			else							new_state = char_r1;
+		}
+		else if (this->x_speed < 0)
+		{
+			if (this->state == char_still_l)		new_state = char_l1;
+			else if (this->state == char_l1)		new_state = char_l2;
+			else if (this->state == char_l2)		new_state = char_l3;
+			else if (this->state == char_l3)		new_state = char_l1;
+			else							new_state = char_l1;
+		}
+		else
+		{
+			if (char_is_r(this))			new_state = char_still_r;
+			else if (char_is_l(this))		new_state = char_still_l;
+			else							new_state = char_still_r;
+		}
+	}
+	else
+	{
+		if (this->y_speed <= 0)   // moving up
+		{
+            if (char_is_r(this))
+            {
+				if (((keycode&0xFF) == KEY_A) || (((keycode>>8) & 0xFF) == KEY_A)) 
+				{
+					new_state = char_jump_l1;
+				}	
+				else
+				{
+					new_state = char_jump_r1;
+				}               
+            }
+            else
+            {
+                if (((keycode&0xFF) == KEY_D) || (((keycode>>8) & 0xFF) == KEY_D))
+                {
+                    new_state = char_jump_r1;
+                }
+                else
+                {
+                    new_state = char_jump_l1;
+                }
+		    }
+        }
+		else				// moving down
+		{
+			if (char_is_r(this))
+			{
+				if (((keycode&0xFF) == KEY_A) || (((keycode>>8) & 0xFF) == KEY_A))
+				{
+					new_state = char_jump_l2;
+				}
+				else
+				{
+					new_state = char_jump_r2;
+				
+				}
+			}
+			else
+			{
+				if (((keycode&0xFF) == KEY_D) || (((keycode>>8) & 0xFF) == KEY_D))
+				{
+					new_state = char_jump_r2;
+				}
+				else
+				{
+					new_state = char_jump_l2;
+				}	
+			}
+			
+		}
+	}
+	return new_state;
+}

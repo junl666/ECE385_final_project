@@ -1,0 +1,90 @@
+/*
+ *  text_mode_vga.h
+ *	Minimal driver for text mode VGA support, ECE 385 Summer 2021 Lab 6
+ *  You may wish to extend this driver for your final project/extra credit project
+ * 
+ *  Created on: Jul 17, 2021
+ *      Author: zuofu
+ */
+
+#ifndef TEXT_MODE_VGA_COLOR_H_
+#define TEXT_MODE_VGA_COLOR_H_
+
+#define KEY_D 7
+#define KEY_A 4
+#define KEY_K 14
+#define KEY_J 13
+
+#define HORIZONTAL_MOVE 6
+#define VERTICAL_MOVE 2
+#define LIFE__POS_X 200
+#define LIFE_POS_Y 100
+#define CHAR_POS_INIT_X 128
+#define CHAR_POS_INIT_Y 256
+
+#define JUMP_SPEED_INIT -10
+#define GRAVITY 0.5
+
+#include <system.h>
+#include <alt_types.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct SPRITE_INFO {
+	alt_u32 VRAM [8];
+};
+
+struct CHAR{
+	int x;
+	int y;
+	int state;
+	int x_speed;
+	int y_speed;
+	int in_air;
+};
+
+enum LifeStatusIndex {
+	life5 = 1,
+	life4 = 2,
+	life3 = 3,
+	life2 = 4,
+	life1 = 5,
+	life0 = 6,
+};
+
+enum CharStatusIndex{
+	char_still_r = 10,
+	char_still_l,
+	char_r1,
+	char_r2,
+	char_r3,
+	char_l1,
+	char_l2,
+	char_l3,
+	char_jump_r1,
+	char_jump_r2,
+	char_jump_l1,
+	char_jump_l2,
+};
+
+
+//you may have to change this line depending on your platform designer
+static volatile struct SPRITE_INFO* vga_ctrl = SPRITERAM_AVL_INTERFACE_0_BASE;
+
+static struct CHAR my_char = {	.x = CHAR_POS_INIT_X, 
+								.y = CHAR_POS_INIT_Y, 
+								.state = char_still_r,
+								.x_speed = 0,
+								.y_speed = 0,
+								.in_air = 0};
+
+
+void game_init();
+void game_run(int keycode); 
+int update_y(int y, int y_speed);  // calculate the new y coordinate of the character based on the speed now
+int update_y_speed(int y_speed);  // calculate the new y speed of the character based on the speed now
+int update_jump_state(int state, int y_speed);  // calculate the new state of the character based on the speed now
+int is_r(int state);
+int is_l(int state);
+#endif /* TEXT_MODE_VGA_COLOR_H_ */

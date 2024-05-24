@@ -1,0 +1,470 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/intelFPGA_lite/ECE385/final_project_1/rtl
+vball
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+!s110 1714844365
+!i10b 1
+!s100 =YIA10>6i>WO6b;aQ?T[M1
+IA[RSC>`Y3nbZEVJXOGhlh2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+!s105 ball_sv_unit
+S1
+Z2 dd:/intelFPGA_lite/ECE385/final_project_1/rtl
+w1714813575
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\ball.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\ball.sv
+L0 17
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1714844364.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\ball.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\ball.sv|
+!i113 1
+Z4 o-nologo -work work
+Z5 tCvgOpt 0
+vbgRom_avl_interface
+R0
+!s110 1714892169
+!i10b 1
+!s100 NEMLBEEQOnV<eAM5JhhZ@2
+IV_Y_;WfNEe0ejWn4Y:QSk1
+R1
+Z6 !s105 spriteRom_avl_interface_sv_unit
+S1
+R2
+w1714889727
+Z7 8d:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRom_avl_interface.sv
+Z8 Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRom_avl_interface.sv
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1714892169.000000
+Z9 !s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRom_avl_interface.sv|
+Z10 !s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRom_avl_interface.sv|
+!i113 1
+R4
+R5
+nbg@rom_avl_interface
+vcolor_mappe
+R0
+!s110 1714890483
+!i10b 1
+!s100 kB9YBELk;HB6VGSB3[PjW0
+I[WLPL>bR^5X6MjogUbHzi2
+R1
+Z11 !s105 color_mapper_sv_unit
+S1
+R2
+w1714890483
+Z12 8d:\intelFPGA_lite\ECE385\final_project_1\rtl\color_mapper.sv
+Z13 Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\color_mapper.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1714890483.000000
+Z14 !s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\color_mapper.sv|
+Z15 !s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\color_mapper.sv|
+!i113 1
+R4
+R5
+vcolor_mapper
+R0
+!s110 1714892123
+!i10b 1
+!s100 agoHOde;0ZCWoXQP5[POC1
+IVS`SXz1M;1E;_0BD=F1iC2
+R1
+R11
+S1
+R2
+w1714892123
+R12
+R13
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1714892123.000000
+R14
+R15
+!i113 1
+R4
+R5
+vDrawing
+R0
+!s110 1714890481
+!i10b 1
+!s100 mjg`CUIzf1[:HbLk<e?`I0
+Ij@I0CW8?RjF5njb4z:[z;3
+R1
+R11
+S1
+R2
+w1714890441
+R12
+R13
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1714890481.000000
+R14
+R15
+!i113 1
+R4
+R5
+n@drawing
+vfinal_project_1
+R0
+!s110 1716477222
+!i10b 1
+!s100 T1NRJ@QGOESoEAhCB0?K40
+I8f?Fe_Zo@ScR;DT@mCI8Z3
+R1
+Z16 !s105 final_project_1_sv_unit
+S1
+R2
+w1716477222
+Z17 8d:\intelFPGA_lite\ECE385\final_project_1\rtl\final_project_1.sv
+Z18 Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\final_project_1.sv
+L0 11
+R3
+r1
+!s85 0
+31
+!s108 1716477222.000000
+Z19 !s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\final_project_1.sv|
+Z20 !s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\final_project_1.sv|
+!i113 1
+R4
+R5
+vHexDriver
+R0
+!s110 1715157751
+!i10b 1
+!s100 hKBo4zbCRmY3[Ac9JZP;<0
+ICG?mkYH5AIKbkR_SYoaan1
+R1
+!s105 HexDriver_sv_unit
+S1
+R2
+w1443474828
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\HexDriver.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\HexDriver.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1715157750.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\HexDriver.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\HexDriver.sv|
+!i113 1
+R4
+R5
+n@hex@driver
+vlab8
+R0
+!s110 1714844057
+!i10b 1
+!s100 Ib?4XFJnDR2Pa0^8`6?622
+Ie6lHXbZ3H5WPYAREbC<H11
+R1
+R16
+S1
+R2
+w1712845127
+R17
+R18
+Z21 L0 16
+R3
+r1
+!s85 0
+31
+!s108 1714844057.000000
+R19
+R20
+!i113 1
+R4
+R5
+vMem2IO
+R0
+!s110 1716462206
+!i10b 1
+!s100 5O0_06c_:@^Hdo8@ok`T92
+I=KKfJ^RL>Sb?A]`?m1hPh0
+R1
+!s105 Mem2IO_sv_unit
+S1
+R2
+w1715172896
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\Mem2IO.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\Mem2IO.sv
+R21
+R3
+r1
+!s85 0
+31
+!s108 1716462206.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\Mem2IO.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\Mem2IO.sv|
+!i113 1
+R4
+R5
+n@mem2@i@o
+vpalette_rom
+R0
+!s110 1715750777
+!i10b 1
+!s100 [iVP1a_6UmPUI^bXCnAj^2
+IK2N1ZZPdVg5DhY:e5Ym>d3
+R1
+!s105 palette_rom_sv_unit
+S1
+R2
+w1715229609
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\palette_rom.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\palette_rom.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1715750777.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\palette_rom.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\palette_rom.sv|
+!i113 1
+R4
+R5
+vsprite_rom
+R0
+!s110 1716305030
+!i10b 1
+!s100 l7MoCjDCKNj:FD?XWCoj02
+Io:aXDoX>AhIfdGcKOMDZe2
+R1
+!s105 sprite_rom_sv_unit
+S1
+R2
+w1716172556
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1716305030.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom.sv|
+!i113 1
+R4
+R5
+vsprite_rom_interface
+R0
+!s110 1716295371
+!i10b 1
+!s100 KlJ?ZPie3=0HK9L3KG;lf2
+IWBjJ[MlJ3hPQ[Q;NLXWY:1
+R1
+!s105 sprite_rom_interface_sv_unit
+S1
+R2
+w1716295371
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom_interface.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom_interface.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1716295371.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom_interface.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\sprite_rom_interface.sv|
+!i113 1
+R4
+R5
+vspriteRam_avl_interface
+R0
+!s110 1716532781
+!i10b 1
+!s100 C5?GZ?73ng4`;:g_F<YBj1
+IRUIh[L;de^AmgMe]7aiB[3
+R1
+!s105 spriteRam_avl_interface_sv_unit
+S1
+R2
+w1716463076
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRam_avl_interface.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRam_avl_interface.sv
+L0 6
+R3
+r1
+!s85 0
+31
+!s108 1716532781.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRam_avl_interface.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\spriteRam_avl_interface.sv|
+!i113 1
+R4
+R5
+nsprite@ram_avl_interface
+vspriteRom_avl_interface
+R0
+!s110 1716296370
+!i10b 1
+!s100 <=fiXf>CRY<80QREUFWk62
+I8SHckN7UoYKi_BnQELA4L2
+R1
+R6
+S1
+R2
+w1716296370
+R7
+R8
+L0 5
+R3
+r1
+!s85 0
+31
+!s108 1716296370.000000
+R9
+R10
+!i113 1
+R4
+R5
+nsprite@rom_avl_interface
+vtristate
+R0
+!s110 1715172280
+!i10b 1
+!s100 Akazoo=71mOgoH<gVR_UC0
+I`5Vj>;HL@`@@Gdeef6N273
+R1
+!s105 tristate_sv_unit
+S1
+R2
+w1506381592
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\tristate.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\tristate.sv
+R21
+R3
+r1
+!s85 0
+31
+!s108 1715172280.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\tristate.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\tristate.sv|
+!i113 1
+R4
+R5
+vvga_clk
+!s110 1714845618
+!i10b 1
+!s100 z^J0AX6[cg^^?mY=Yj_Vj0
+IlhTM0G?JXA@L@OEel`dh?3
+R1
+R2
+w1712652421
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_clk.v
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_clk.v
+L0 39
+R3
+r1
+!s85 0
+31
+!s108 1714845618.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_clk.v|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_clk.v|
+!i113 1
+R4
+R5
+vVGA_controller
+R0
+!s110 1715172968
+!i10b 1
+!s100 iZ^ZkeRFZV@Tdc684OR@G2
+ITgklID<ljYJ;Jo024OY452
+R1
+!s105 VGA_controller_sv_unit
+S1
+R2
+w1512857293
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\VGA_controller.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\VGA_controller.sv
+L0 26
+R3
+r1
+!s85 0
+31
+!s108 1715172968.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\VGA_controller.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\VGA_controller.sv|
+!i113 1
+R4
+R5
+n@v@g@a_controller
+vvga_controller
+R0
+!s110 1714844031
+!i10b 1
+!s100 PJJOcFccdZOKRcczIX[X?3
+I]MQ[mIZJ@ObMg]i==Q^VW1
+R1
+!s105 vga_controller_sv_unit
+S1
+R2
+w1713345920
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_controller.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_controller.sv
+L0 25
+R3
+r1
+!s85 0
+31
+!s108 1714844031.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_controller.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_controller.sv|
+!i113 1
+R4
+R5
+vvga_text_avl_interface
+R0
+!s110 1714889586
+!i10b 1
+!s100 0heI5KY4jz_BXJg;:bnfa2
+ImKCAQomF:YlDh65cOW8nL3
+R1
+!s105 vga_text_avl_interface_sv_unit
+S1
+R2
+w1714889586
+8d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_text_avl_interface.sv
+Fd:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_text_avl_interface.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1714889586.000000
+!s107 d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_text_avl_interface.sv|
+!s90 -nologo|-work|work|d:\intelFPGA_lite\ECE385\final_project_1\rtl\vga_text_avl_interface.sv|
+!i113 1
+R4
+R5

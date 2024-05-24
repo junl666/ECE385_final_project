@@ -1,0 +1,174 @@
+/*
+ * text_mode_vga_color.c
+ * Minimal driver for text mode VGA support
+ * This is for Week 2, with color support
+ *
+ *  Created on: Oct 25, 2021
+ *      Author: zuofu
+ */
+
+#include "text_mode_vga_color.h"
+
+void game_init()
+{
+	vga_ctrl->VRAM[0] = LIFE__POS_X << 22 | LIFE_POS_Y << 12 | life5;
+	vga_ctrl->VRAM[1] = CHAR_POS_INIT_X << 22 | CHAR_POS_INIT_Y << 12 | char_still_r;
+	for (int i = 2; i < 8; i++)
+	{
+		vga_ctrl->VRAM[i] = 0;
+	}
+}
+
+
+void game_run(int keycode)
+{
+	if (keycode == KEY_D || keycode == (KEY_D << 8)) // key: D -- move right
+	{
+		// my_char.x_speed = HORIZONTAL_MOVE;
+		// my_char.y_speed = 0;
+		my_char.x += HORIZONTAL_MOVE;
+		if (my_char.state == char_still_r)
+		{
+			my_char.state = char_r1;
+		}
+		else if (my_char.state == char_r1)
+		{
+			my_char.state = char_r2;
+		}
+		else if (my_char.state == char_r2)
+		{
+			my_char.state = char_r3;
+		}
+		else if (my_char.state == char_r3)
+		{
+			my_char.state = char_r1;
+		}
+		else
+		{
+			my_char.state = char_r1;
+		}
+		vga_ctrl->VRAM[1] = my_char.x << 22 | my_char.y << 12 | my_char.state;
+		
+	}
+	else if (keycode == KEY_A || keycode == (KEY_A << 8)) // key: A -- move left
+	{
+		// my_char.x_speed = -HORIZONTAL_MOVE;
+		// my_char.y_speed = 0;
+		my_char.x -= HORIZONTAL_MOVE;
+		if (my_char.state == char_still_1)
+		{
+			my_char.state = char_l1;
+		}
+		else if (my_char.state == char_l1)
+		{
+			my_char.state = char_l2;
+		}
+		else if (my_char.state == char_l2)
+		{
+			my_char.state = char_l3;
+		}
+		else if (my_char.state == char_l3)
+		{
+			my_char.state = char_l1;
+		}
+		else
+		{
+			my_char.state = char_l1;
+		}
+		vga_ctrl->VRAM[1] = my_char.x << 22 | my_char.y << 12 | my_char.state;
+
+	}
+	else if (keycode == KEY_K || keycode == (KEY_K << 8)) // key: K -- jump
+	{
+		if (!my_char.in_air) {
+			my_char.y_speed = JUMP_SPEED_INIT;
+			my_char.in_air = 1;
+			my_char.state = (is_r) ? char_jump_r1 : char_jump_l1;
+			my_char.y  += my_char.y_speed;
+		}
+		else
+		{
+			my_char.y_speed = update_y_speed(my_char.y_speed);
+			my_char.state = update_jump_state(my_char.state, my_char.y_speed);
+			my_char.y = update_y(my_char.y, my_char.y_speed);
+			if (my_char.y == CHAR_POS_INIT_Y)
+			{
+				my_char.y_speed = 0;
+				my_char.in_air = 0;
+			}
+		}
+		vga_ctrl->VRAM[1] = my_char.x << 22 | my_char.y << 12 | my_char.state;
+	}
+	else
+	{
+		// my_char.x_speed = 0;
+		// my_char.y_speed = 0;
+		
+		if (my_char.in_air)
+		{
+			my_char.y_speed = update_y_speed(my_char.y_speed);
+			my_char.state = update_jump_state(my_char.state, my_char.y_speed);
+			my_char.y = update_y(my_char.y, my_char.y_speed);
+			if (my_char.y == CHAR_POS_INIT_Y)
+			{
+				my_char.y_speed = 0;
+				my_char.in_air = 0;
+				my_char.state = (my_char.state == char_jump_r1)? char_still_r : char_still_l;
+			}
+		}
+		else
+		{
+			if (is_r(my_char.state))
+			{
+				my_char.state = char_still_r;
+			}
+			else if (is_l(my_char.state))
+			{
+				my_char.state = char_still_1;
+			}
+		}
+		vga_ctrl->VRAM[1] = my_char.x << 22 | my_char.y << 12 | my_char.state;
+
+	}
+}
+
+int update_y(int y, int y_speed)
+{
+	return ((y >= CHAR_POS_INIT_Y) ? CHAR_POS_INIT_Y : (y + y_speed));
+}
+
+int update_y_speed(int y_speed)
+{
+	return (y_speed + GRAVITY);
+}
+
+int update_jump_state(int state, int y_speed)
+{
+	int new_state;
+	if(y_speed <= 0)
+	{
+		new_state = state;
+	}
+	else
+	{
+		if (state == char_jump_r1) new_state = char_jump_r2;
+		else if (state == char_jump_r2) new_state = char_jump_r2;
+		else if (state == char_jump_l1)	new_state = char_jump_l2;
+		else if (state == char_jump_l2)	new_state = char_jump_l2;
+		else
+		{
+
+		}
+	}
+	return new_state;
+}
+
+int is_r(int state)
+{
+	return ((state == char_still_r) || (state == char_r1) || (state == char_r2) || (state == char_r3));
+}
+
+int is_l(int state)
+{
+	return ((state == char_still_1) || (state == char_l1) || (state == char_l2) || (state == char_l3));
+}

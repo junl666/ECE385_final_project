@@ -1,0 +1,26 @@
+#include "game.h"
+
+
+void game_init()
+{
+	my_char = malloc(sizeof(CHARACTER));
+	ball_attack = malloc(sizeof(BALL_ATTACK));
+	vga_ctrl->VRAM[1] = char_init(my_char);
+    vga_ctrl->VRAM[2] = ball_attack_init(ball_attack);
+	for (int i = 0; i < 8; i++)
+	{
+        if ((i != 1) && (i != 2)) vga_ctrl->VRAM[i] = 0;
+	}
+}
+
+void game_run(int keycode)
+{
+    vga_ctrl->VRAM[1] = char_run(my_char,  keycode);
+//    printf("x: %d  y: %d\n", my_char->x, my_char->y);
+}
+
+void game_free()
+{
+    free(my_char);
+    free(ball_attack);
+}

@@ -1,0 +1,32 @@
+#ifndef BALL_ATTACK_H_
+#define BALL_ATTACK_H_
+
+#define KEY_J 13
+
+#define BALL_HORIZONTAL_MOVE 6
+#define BALL_BIAS 5
+
+#include <alt_types.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int is_active;
+    int x;
+    int y;
+    int x_origin;
+    int y_origin;
+    int x_speed;
+    int state;
+} BALL_ATTACK;
+
+enum BallAttackStatusIndex{
+	ball_attack_r = 28,
+	ball_attack_l = 29
+};
+
+alt_u32 ball_attack_init(BALL_ATTACK* this);   // initialize the ball attack
+alt_u32 ball_attack_run(BALL_ATTACK* this, int char_x, int char_y, int char_state, int keycode);    // run the ball attack
+int ball_attack_update_x(int x, int x_speed);  // calculate the new x coordinate of the ball attack based on the speed now
+
+#endif /* BALL_ATTACK_H_ */

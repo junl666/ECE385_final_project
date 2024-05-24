@@ -1,0 +1,166 @@
+/*
+ * text_mode_vga_color.c
+ * Minimal driver for text mode VGA support
+ * This is for Week 2, with color support
+ *
+ *  Created on: Oct 25, 2021
+ *      Author: zuofu
+ */
+
+#include "text_mode_vga_color.h"
+
+//void textVGAColorClr()
+//{
+//	for (int i = 0; i<(ROWS*COLUMNS) * 2; i++)
+//	{
+//		vga_ctrl->VRAM[i] = 0x00;
+//	}
+//}
+//
+//void textVGADrawColorText(char* str, int x, int y, alt_u8 background, alt_u8 foreground)
+//{
+//	int i = 0;
+//	while (str[i]!=0)
+//	{
+//		vga_ctrl->VRAM[(y*COLUMNS + x + i) * 2] = foreground << 4 | background;
+//		vga_ctrl->VRAM[(y*COLUMNS + x + i) * 2 + 1] = str[i];
+//		i++;
+//	}
+//}
+//
+//void setColorPalette (alt_u8 color, alt_u8 red, alt_u8 green, alt_u8 blue)
+//{
+//	//fill in this function to set the color palette starting at offset 0x0000 2000 (from base)
+//	int color_word_index;  // from 0 to 7
+//	int inside_index;	   // the index inside a word, from 0 to 1
+//	color_word_index = color / 2;
+//	inside_index = color % 2;
+//	if (0 == inside_index)
+//	{
+//		vga_ctrl->PALETTE[color_word_index] &= 0x1FFE000;
+//		vga_ctrl->PALETTE[color_word_index] |= (red << 9 | green << 5 | blue << 1);
+//	}
+//	else
+//	{
+//		vga_ctrl->PALETTE[color_word_index] &= 0x1FFE;
+//		vga_ctrl->PALETTE[color_word_index] |= (red << 21 | green << 17 | blue << 13);
+//	}
+//}
+//
+//
+//void textVGAColorScreenSaver()
+//{
+//	//This is the function you call for your week 2 demo
+//	char color_string[80];
+//    int fg, bg, x, y;
+//	textVGAColorClr();
+//	//initialize palette
+//	for (int i = 0; i < 16; i++)
+//	{
+//		setColorPalette (i, colors[i].red, colors[i].green, colors[i].blue);
+//	}
+//	while (1)
+//	{
+//		fg = rand() % 16;
+//		bg = rand() % 16;
+//		while (fg == bg)
+//		{
+//			fg = rand() % 16;
+//			bg = rand() % 16;
+//		}
+//		sprintf(color_string, "Drawing %s text with %s background", colors[fg].name, colors[bg].name);
+//		printf("success\n");
+//		x = rand() % (80-strlen(color_string));
+//		y = rand() % 30;
+//		textVGADrawColorText (color_string, x, y, bg, fg);
+//		usleep (100000);
+//	}
+//}
+void test_init()
+{
+	vga_ctrl->VRAM[0] = 0b00100000000010000000000000000000;
+//	vga_ctrl->VRAM[1] = 0b01000000000100000000000000000000;
+	for (int i = 1; i < 8; i++)
+	{
+		vga_ctrl->VRAM[i] = 0xFFFFFFFF;
+	}
+}
+
+void test01()
+{
+	test_init();
+	while (1)
+	{
+		vga_ctrl->VRAM[0] += 0b00001000000000100000000000000000;
+		usleep (100000);
+	}
+}
+
+void test02(int keycode)
+{
+//	vga_ctrl->VRAM[1] += 0b00000000100000000000000000000000;
+
+	if (keycode == 7 || keycode == (7 << 8)) // key: D -- move right
+	{
+		vga_ctrl->VRAM[0] += horizontal_move << 22;
+	}
+	else if (keycode == 4 || keycode == (4 << 8)) // key: A -- move left
+	{
+		vga_ctrl->VRAM[0] -= horizontal_move << 22;
+	}
+	else if (keycode == 26 || keycode == (26 << 8)) // key: w -- up
+	{
+		vga_ctrl->VRAM[0] -= vertical_move << 12;
+	}
+	else if (keycode == 22 || keycode == (22 << 8)) // key: s -- down
+	{
+		vga_ctrl->VRAM[0] += vertical_move << 12;
+	}
+	else if ((keycode == (7 | (26 << 8))) || (keycode == (26 | (7 << 8))))	// right and up
+	{
+		vga_ctrl->VRAM[0] += horizontal_move << 22;
+		vga_ctrl->VRAM[0] -= vertical_move << 12;
+	}
+	else
+	{
+
+	}
+}
+
+void game_init()
+{
+	vga_ctrl->VRAM[0] = life_pos_x << 22 | life_pos_y << 12 | life5;
+	vga_ctrl->VRAM[1] = char_pos_init_x << 22 | char_pos_init_y << 12 | char_still_r;
+	for (int i = 2; i < 8; i++)
+	{
+		vga_ctrl->VRAM[i] = 0;
+	}
+}
+
+
+void game_run(int keycode)
+{
+	if (keycode == 7 || keycode == (7 << 8)) // key: D -- move right
+	{
+		usleep(5000);
+		vga_ctrl->VRAM[1] = (horizontal_move << 22) + (((vga_ctrl->VRAM[1])&0xFFFFFFF0)| char_r1);
+		usleep(5000);
+		vga_ctrl->VRAM[1] = ((vga_ctrl->VRAM[1])& 0xFFFFFFF0)| char_r2;
+		usleep(5000);
+		vga_ctrl->VRAM[1] = ((vga_ctrl->VRAM[1])& 0xFFFFFFF0)| char_r3;
+	}
+	else if (keycode == 4 || keycode == (4 << 8)) // key: A -- move left
+	{
+//		vga_ctrl->VRAM[1] -= (horizontal_move << 22);
+		vga_ctrl->VRAM[1] = -(horizontal_move << 22) + (((vga_ctrl->VRAM[1])&0xFFFFFFF0)| char_r1);
+//		usleep(200);
+//		vga_ctrl->VRAM[1] = -(horizontal_move << 22) + (vga_ctrl->VRAM[1]| char_r2);
+//		usleep(200);
+//		vga_ctrl->VRAM[1] = -(horizontal_move << 22) << 22 + (vga_ctrl->VRAM[1]| char_r3);
+//		usleep(200);
+	}	
+	else
+	{
+		vga_ctrl->VRAM[1] = (vga_ctrl->VRAM[1] & 0xFFFFFFF0) | char_still_r;
+	}
+}
